@@ -10,6 +10,14 @@
 
 @implementation AnATerritory
 
+@synthesize name;
+@synthesize capitol;
+@synthesize controllingFaction;
+@synthesize nativeFaction;
+@synthesize value;
 
+- (NSComparisonResult)compare:(AnATerritory *)otherObject {
+    return [self.name compare:otherObject.name];
+}
 
 @end

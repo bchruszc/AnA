@@ -46,8 +46,8 @@
 	NSArray *territoriesInSection = [sectionsArray objectAtIndex:indexPath.section];
 	
 	// Configure the cell with the time zone's name.
-	NSString *territoryName = [territoriesInSection objectAtIndex:indexPath.row];
-    cell.textLabel.text = territoryName;
+	AnATerritory *territory = [territoriesInSection objectAtIndex:indexPath.row];
+    cell.textLabel.text = territory.name;
 	
     return cell;
 }
@@ -121,7 +121,7 @@
 		NSMutableArray *timeZonesArrayForSection = [newSectionsArray objectAtIndex:index];
 		
 		// If the table view or its contents were editable, you would make a mutable copy here.
-		NSArray *sortedTimeZonesArrayForSection = [collation sortedArrayFromArray:timeZonesArrayForSection collationStringSelector:@selector(localeName)];
+		NSArray *sortedTimeZonesArrayForSection = [collation sortedArrayFromArray:timeZonesArrayForSection collationStringSelector:@selector(name)];
 		
 		// Replace the existing array with the sorted array.
 		[newSectionsArray replaceObjectAtIndex:index withObject:sortedTimeZonesArrayForSection];

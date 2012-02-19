@@ -190,18 +190,35 @@ ConquorView * viewConquorView;
         statesTemp = [NSMutableArray arrayWithCapacity:1];
         for (NSDictionary *stateDict in tempArray) {
             AnATerritory *aTerritory = [[AnATerritory alloc] init];
-            NSLog([stateDict objectForKey:@"Name"]);
-//            aTerritory.capitol = ;
-            aTerritory.name = [stateDict objectForKey:@"Name"];
-            aTerritory.value = [stateDict objectForKey:@"Value"];
-            aTerritory.nativeFaction = [stateDict objectForKey:@"NativeFaction"];
-            aTerritory.controllingFaction = [stateDict objectForKey:@"ControllingFaction"];
+            NSString * n = [stateDict objectForKey:@"Name"];
+            // Nothing wrong with the actual string - just not allowed to set name?
+            aTerritory.name = [NSMutableString stringWithString: n];
+            aTerritory.capitol = [stateDict objectForKey:@"Name"];
+            aTerritory.value = [[stateDict objectForKey:@"Value"] intValue];
+            aTerritory.nativeFaction = [[stateDict objectForKey:@"NativeFaction"] intValue];
+            aTerritory.controllingFaction = [[stateDict objectForKey:@"ControllingFaction"] intValue];
 
             [statesTemp addObject:aTerritory];
         }
     } 
     
-    viewConquorView.territoryList = [statesTemp sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    viewConquorView.territoryList = [statesTemp sortedArrayUsingSelector:@selector(compare:)];
+    
+    //    viewConquorView.territoryList = [statesTemp sortedArrayUsingDescriptors:sortDescriptors];
+
+    // Failed way to sort #2...
+//    NSSortDescriptor *sortDescriptor;
+//    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+//    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//    viewConquorView.territoryList = [statesTemp sortedArrayUsingDescriptors:sortDescriptors];
+//    
+
+    // Failed way to sort...
+    //    viewConquorView.territoryList = [statesTemp sortedArrayUsingComparator:^(id a, id b) {
+//        NSString *first = [(AnATerritory*)a name];
+//        NSString *second = [(AnATerritory*)b name];
+//        return [first compare:second];
+//    }];
     
     [self addViewToScroll:(ViewController *)viewConquorView:page++];
     
