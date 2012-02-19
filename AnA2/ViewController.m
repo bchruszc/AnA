@@ -8,10 +8,12 @@
 
 #import "ViewController.h"
 #import "PurchaseView.h"
+#import "ConquorView.h"
 #import "FactionViewController.h"
 #import "TVOutManager.h"
+#import "AnATerritory.h"
 
-#define NUM_PAGES 2
+#define NUM_PAGES 3
 #define NUM_FACTIONS 5
 
 @implementation ViewController
@@ -26,6 +28,8 @@ int currentFaction = 0;
 
 FactionViewController * viewFactionView;
 PurchaseView * viewPurchaseView;
+ConquorView * viewConquorView;
+
 
 -(IBAction) doNext {
     [self setPage:([self getPage] + 1)];
@@ -91,7 +95,7 @@ PurchaseView * viewPurchaseView;
 -(void) setPage: (int) page
 {
     NSArray *factions = [NSArray arrayWithObjects:@"Russia", @"Germany", @"Great Britain", @"Japan", @"USA", nil];
-    NSArray *stages = [NSArray arrayWithObjects:@"Faction Summary", @"Purchase Units", nil];
+    NSArray *stages = [NSArray arrayWithObjects:@"Faction Summary", @"Purchase Units", @"Conquor Territories", nil];
 
     /*
      * Wrapping, for now
@@ -160,6 +164,10 @@ PurchaseView * viewPurchaseView;
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     pageControlBeingUsed = NO;
+    
+    
+
+
 
     int page = 0;
     viewFactionView = [[FactionViewController alloc] initWithFaction:@"Russia" imageName:@"russia_icon.png"];
@@ -167,6 +175,35 @@ PurchaseView * viewPurchaseView;
     
     viewPurchaseView = [PurchaseView alloc];
     [self addViewToScroll:(ViewController *)viewPurchaseView:page++];
+
+    
+    viewConquorView = [[ConquorView alloc] initWithStyle:UITableViewStylePlain];
+    // Set up the list of known territories
+	
+	// Retrieve the array of known time zone names, then sort the array and pass it to the root view controller.
+    
+    NSString *thePath = [[NSBundle mainBundle] pathForResource:@"Territories" ofType:@"plist"];
+    NSArray *tempArray;
+    NSMutableArray *statesTemp;
+    if (thePath){
+        tempArray = [NSArray arrayWithContentsOfFile:thePath];
+        statesTemp = [NSMutableArray arrayWithCapacity:1];
+        for (NSDictionary *stateDict in tempArray) {
+            AnATerritory *aTerritory = [[AnATerritory alloc] init];
+            NSLog([stateDict objectForKey:@"Name"]);
+//            aTerritory.capitol = ;
+            aTerritory.name = [stateDict objectForKey:@"Name"];
+            aTerritory.value = [stateDict objectForKey:@"Value"];
+            aTerritory.nativeFaction = [stateDict objectForKey:@"NativeFaction"];
+            aTerritory.controllingFaction = [stateDict objectForKey:@"ControllingFaction"];
+
+            [statesTemp addObject:aTerritory];
+        }
+    } 
+    
+    viewConquorView.territoryList = [statesTemp sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    
+    [self addViewToScroll:(ViewController *)viewConquorView:page++];
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * NUM_PAGES, self.scrollView.frame.size.height);
     self.pageControl.numberOfPages = NUM_PAGES;

@@ -47,6 +47,9 @@
 		CB8A19DA14CC6E9C003C59FD /* battleship.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8A19CF14CC6E9C003C59FD /* battleship.png */; };
 		CB8A19DB14CC6E9C003C59FD /* artillery.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8A19D014CC6E9C003C59FD /* artillery.png */; };
 		CB8A19DC14CC6E9C003C59FD /* transport.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8A19D114CC6E9C003C59FD /* transport.png */; };
+		E63D9C9E14F081B800478EC0 /* AnATerritory.m in Sources */ = {isa = PBXBuildFile; fileRef = E63D9C9D14F081B700478EC0 /* AnATerritory.m */; };
+		E63D9CA014F0871100478EC0 /* Territories.plist in Resources */ = {isa = PBXBuildFile; fileRef = E63D9C9F14F0871100478EC0 /* Territories.plist */; };
+		E65DEB8A14F0273600AB7493 /* ConquorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E65DEB8914F0273600AB7493 /* ConquorView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +115,11 @@
 		CB8A19CF14CC6E9C003C59FD /* battleship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = battleship.png; sourceTree = "<group>"; };
 		CB8A19D014CC6E9C003C59FD /* artillery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = artillery.png; sourceTree = "<group>"; };
 		CB8A19D114CC6E9C003C59FD /* transport.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transport.png; sourceTree = "<group>"; };
+		E63D9C9C14F081B700478EC0 /* AnATerritory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnATerritory.h; sourceTree = "<group>"; };
+		E63D9C9D14F081B700478EC0 /* AnATerritory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnATerritory.m; sourceTree = "<group>"; };
+		E63D9C9F14F0871100478EC0 /* Territories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Territories.plist; sourceTree = "<group>"; };
+		E65DEB8814F026F800AB7493 /* ConquorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConquorView.h; sourceTree = "<group>"; };
+		E65DEB8914F0273600AB7493 /* ConquorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConquorView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +187,7 @@
 		8F9980D614C35762001C1420 /* Turn Stage Views */ = {
 			isa = PBXGroup;
 			children = (
+				E65DEB8214F0266F00AB7493 /* Conquor View */,
 				8F9980D714C35791001C1420 /* Purchase View */,
 				8F9980D414C3565B001C1420 /* Faction Title View */,
 			);
@@ -280,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				CB7E5D07149FCFAF00A8C6E4 /* AnA2-Info.plist */,
+				E63D9C9F14F0871100478EC0 /* Territories.plist */,
 				CB7E5D08149FCFAF00A8C6E4 /* InfoPlist.strings */,
 				CB7E5D0B149FCFAF00A8C6E4 /* main.m */,
 				CB7E5D0D149FCFAF00A8C6E4 /* AnA2-Prefix.pch */,
@@ -323,6 +333,17 @@
 				CB8A19D114CC6E9C003C59FD /* transport.png */,
 			);
 			name = units;
+			sourceTree = "<group>";
+		};
+		E65DEB8214F0266F00AB7493 /* Conquor View */ = {
+			isa = PBXGroup;
+			children = (
+				E65DEB8814F026F800AB7493 /* ConquorView.h */,
+				E65DEB8914F0273600AB7493 /* ConquorView.m */,
+				E63D9C9C14F081B700478EC0 /* AnATerritory.h */,
+				E63D9C9D14F081B700478EC0 /* AnATerritory.m */,
+			);
+			name = "Conquor View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,6 +439,7 @@
 				CB8A19DB14CC6E9C003C59FD /* artillery.png in Resources */,
 				CB8A19DC14CC6E9C003C59FD /* transport.png in Resources */,
 				CB1036F214CE49EA00A5C711 /* GermanyStamp.png in Resources */,
+				E63D9CA014F0871100478EC0 /* Territories.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +483,8 @@
 				CB3D04D014D106C200ACE23E /* PlayableUnit.m in Sources */,
 				CB3D04D314D1082700ACE23E /* InfantryUnit.m in Sources */,
 				CB3D04D614D11CFE00ACE23E /* PlacedUnit.m in Sources */,
+				E65DEB8A14F0273600AB7493 /* ConquorView.m in Sources */,
+				E63D9C9E14F081B800478EC0 /* AnATerritory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
