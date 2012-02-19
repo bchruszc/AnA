@@ -48,6 +48,35 @@
 	// Configure the cell with the time zone's name.
 	AnATerritory *territory = [territoriesInSection objectAtIndex:indexPath.row];
     cell.textLabel.text = territory.name;
+    NSString * iconName;
+    switch (territory.controllingFaction) {
+        case 1:
+            iconName = @"russia_icon";
+            break;
+        case 2:
+            iconName = @"germany_icon";
+            break;
+        case 3:
+            iconName = @"england_icon";
+            break;
+        case 4:
+            iconName = @"japan_icon";
+            break;
+        case 5:
+            iconName = @"usa_icon";
+            break;
+        default:
+            break;
+    }
+    if(iconName){
+        NSString *path = [[NSBundle mainBundle] pathForResource:iconName ofType:@"png"];
+        UIImage *theImage = [UIImage imageWithContentsOfFile:path];
+        cell.imageView.image = theImage;
+    }
+    
+    if(territory.controllingFaction != territory.nativeFaction){
+        cell.detailTextLabel.text = @"Conquered";
+    }
 	
     return cell;
 }
